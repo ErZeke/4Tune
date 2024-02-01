@@ -34,7 +34,7 @@ def netprofitdifferences():
         if increase==len(netprofit_diff): #checking if net profit is constantly increasing in profits
             index=netprofit_diff.index(max(netprofit_diff)) #max(netprofit_diff) looks for the maximum value, netprofit_diff.index(__) gets the index of the maximum value in the list
             file.write("\n[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
-            file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {profitloss[index][0]+1}, AMOUNT: SGD{max(netprofit_diff)}\n")
+            file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {profitloss[index][0]+1}, AMOUNT: SGD{max(netprofit_diff)}\n") #we used i+1 to help to iterate through the csv file to retrieve the value. 
 
         elif decrease==len(netprofit_diff): #is constantly decreasing in profits
             index=netprofit_diff.index(min(netprofit_diff)) #min(netprofit_diff) looks for the minimum value, netprofit_diff.index(__) gets the index of the minimum value in the list
