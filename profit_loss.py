@@ -31,7 +31,7 @@ def netprofitdifferences():
         elif netprofit_diff[i]<0: decrease+=1
         
     with open('summary_report.txt','a') as file:
-        if increase==len(netprofit_diff): #is constantly increasing in profits
+        if increase==len(netprofit_diff): #checking if net profit is constantly increasing in profits
             index=netprofit_diff.index(max(netprofit_diff)) #max(netprofit_diff) looks for the maximum value, netprofit_diff.index(__) gets the index of the maximum value in the list
             file.write("\n[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
             file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {profitloss[index][0]+1}, AMOUNT: SGD{max(netprofit_diff)}\n")
