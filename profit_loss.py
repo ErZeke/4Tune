@@ -51,10 +51,10 @@ def netprofitdifferences():
                     file.write(f"[NET PROFIT DEFICIT] DAY: {profitloss[i][0]+1}, AMOUNT: SGD{-netprofit_diff[i]}\n")
 
             temp_list=sorted(netprofit_diff.copy()) #this sorts the difference list from smallest to largest values
-            temp_list=temp_list[0:3] #obtaining the first 3 values of the sorted list, aka the 3 most negative values
+            temp_list=temp_list[0:3] #obtaining the first 3 values of the sorted list the top 3 most negative values
 
             file.write("\nTop 3 Highest Deficit Amounts:\n")
             for i in range(3): #iterating through the 3 most negative values
-                position=['','2ND ','3RD '] #rankings for cash deficit values
+                position=['','2ND ','3RD '] #to do the rankings for cash deficit values
                 index=netprofit_diff.index(temp_list[i]) #temp_list[i] is the difference value, netprofit_diff.index(__) looks for its original position to correlate back to it's day
                 file.write(f"[{position[i]}HIGHEST NET PROFIT DEFICIT] DAY: {profitloss[index][0]+1}, AMOUNT: SGD{-temp_list[i]}\n")
