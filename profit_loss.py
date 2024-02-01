@@ -4,7 +4,7 @@ import csv
 pl = Path.cwd()/"csv_reports/Profits_and_Loss.csv"
 with pl.open(mode="r", encoding="UTF-8", newline="") as csvfile:
     reader = csv.reader(csvfile)
-    next(reader) # skip header
+    next(reader) # skip header row of csv file
 
     # create an empty list for profit and loss
     profitloss=[] 
@@ -13,7 +13,7 @@ with pl.open(mode="r", encoding="UTF-8", newline="") as csvfile:
     for row in reader:
         #get the day, sales, trading profit, operating expense and net profit for each day and append to the profitloss list
         profitloss.append([int(row[0]),int(row[1]),int(row[2]),int(row[3]),int(row[4])])
-        
+   #define a function to analyse the differences in net profit      
 def netprofitdifferences():        
     netprofit=[] #creating an empty list
     for i in range(len(profitloss)): #appending all net profits values to the empty list
@@ -35,7 +35,7 @@ def netprofitdifferences():
             index=netprofit_diff.index(max(netprofit_diff)) #max(netprofit_diff) looks for the maximum value, netprofit_diff.index(__) gets the index of the maximum value in the list
             file.write("\n[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
             file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {profitloss[index][0]+1}, AMOUNT: SGD{max(netprofit_diff)}\n") 
-            #we used i+1 to help to iterate through the csv file to retrieve the value. Instead of using [i][0] which will only access the day column 
+            #we used i[0]+1 to help to iterate through the csv file to retrieve the value. Instead of using only [i][0] which will only access the day column 
             #and we have already calculated the net profit difference in the earlier parts of the code so using the same iterator makes it easier.
         elif decrease==len(netprofit_diff): #is constantly decreasing in profits
             index=netprofit_diff.index(min(netprofit_diff)) #min(netprofit_diff) looks for the minimum value, netprofit_diff.index(__) gets the index of the minimum value in the list
@@ -50,7 +50,7 @@ def netprofitdifferences():
                 if netprofit_diff[i]<0: #to identify which is a deficit (deficit as its a negative number)
                     deficit[profitloss[i][0]+1]=netprofit_diff[i] #appending day and difference to the dictionary
                     file.write(f"[NET PROFIT DEFICIT] DAY: {profitloss[i][0]+1}, AMOUNT: SGD{-netprofit_diff[i]}\n") #to write the net profit deficit in the proper format in the summary text file. 
-
+       
             temp_list=sorted(netprofit_diff.copy()) #this sorts the difference list from smallest to largest values
             temp_list=temp_list[0:3] #obtaining the first 3 values of the sorted list the top 3 most negative values
 

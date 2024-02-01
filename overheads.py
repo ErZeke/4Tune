@@ -4,7 +4,7 @@ import csv
 pl = Path.cwd()/"csv_reports/Overheads.csv"
 with pl.open(mode="r", encoding="UTF-8", newline="") as csvfile:
     reader = csv.reader(csvfile)
-    next(reader) # skip header
+    next(reader) # skip header row of CSV File
 
     # create an empty dictionary for overhead
     overhead={}
